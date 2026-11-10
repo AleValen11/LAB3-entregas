@@ -49,3 +49,45 @@
 | **Operaciones Pesadas** | 0 Multiplicaciones / 0 Divisiones | Solo requiere Sumas y Complemento a 2. |
 | **Resolución LSB** | 0,00195 | Salida maximizada en formato Q6.9. |
 | **Error Máximo** | 0,00098 (½ LSB) | Redondeo al más cercano garantizado. |
+
+## Propuesta de Optimización para Nueva ISA
+Dado que el algoritmo non-restoring requiere múltiples corrimientos lógicos (`R << 1`) que en la LC-3 original deben emularse mediante sumas consecutivas (`ADD R, R, R`), el rendimiento del benchmark mejorará drásticamente en la próxima etapa del laboratorio al diseñar e incorporar:
+1. **Instrucción SHL (Shift Left):** Reducirá los ciclos de reloj gastados en bajar el par de bits y acomodar la raíz.
+2. **Suma con Acarreo (ADDC):** Permitiría procesar restos de 32 bits, rompiendo el límite de $k=13$ iteraciones y aumentando la precisión fraccionaria de la calculadora sin desbordar los registros.
+
+## Diagrama de Flujo: Lazo Principal SQRT Non-Restoring
+
+```mermaid
+flowchart TD
+    A([Inicio: R=0, Q=0, k=13]) --> B
+    
+    B[Bajar 2 bits del radicando:\n T = 4R + par] --> C{¿Resto anterior\n >= 0?}
+    
+    C -- Sí --> D[R = T - 4Q - 1]
+    C -- No --> E[R = T + 4Q + 3]
+    
+    D --> F
+    E --> F
+    
+    F[Pegar bit a la raíz:\n Q = 2Q + bit_nuevo] --> G{¿Faltan\n iteraciones?}
+    
+    G -- Sí --> B
+    G -- No --> H[Corrección final:\n Si R < 0, R = R + 2Q + 1]
+    
+    H --> I[Redondeo:\n Si R > Q, Q = Q + 1]
+    I --> J([Fin: Resultado en Q])
+```
+
+## Integración de la Interfaz (Black-Box)
+
+```mermaid
+flowchart LR
+    A["Controlador Principal\n(Grupo 27)"] -- "R0 (Radicando Q7.8)" --> B
+    
+    subgraph Grupo 23
+    B(("SQRT_NR\n(Auto-gestionado)"))
+    end
+    
+    B -- "R0 (Raíz Q6.9)" --> A
+    B -. "x8000 (Error: x < 0)" .-> A
+```
