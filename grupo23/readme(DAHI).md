@@ -40,29 +40,12 @@
 
 ## Diagrama de Flujo: Lazo Principal SQRT Non-Restoring
 
-```mermaid
-flowchart TD
-    A([Inicio: R=0, Q=0, k=13]) --> B
-    
-    B[Bajar 2 bits del radicando:\n T = 4R + par] --> C{¿Resto anterior\n >= 0?}
-    
-    C -- Sí --> D[R = T - 4Q - 1]
-    C -- No --> E[R = T + 4Q + 3]
-    
-    D --> F
-    E --> F
-    
-    F[Pegar bit a la raíz:\n Q = 2Q + bit_nuevo] --> G{¿Faltan\n iteraciones?}
-    
-    G -- Sí --> B
-    G -- No --> H[Corrección final:\n Si R < 0, R = R + 2Q + 1]
-    
-    H --> I[Redondeo:\n Si R > Q, Q = Q + 1]
-    I --> J([Fin: Resultado en Q])
-    
-    style C fill:#f9f0ce,stroke:#d3b145
-    style D fill:#d4e1f9,stroke:#4a76c4
-    style E fill:#e6d4f9,stroke:#8e4ac4
-    style B fill:#d4f9e1,stroke:#4ac476
-    style F fill:#d4f9e1,stroke:#4ac476
-```
+## Métricas de Desempeño (Benchmark)
+
+| Métrica | Valor Alcanzado | Observación |
+| :--- | :--- | :--- |
+| **Uso de Memoria** | 55 Palabras (Código) | Altamente eficiente, sin tablas LUT anexas. |
+| **Instrucciones Ejecutadas** | 276 a 334 instrucciones | Ejecución acotada por $k=13$ ciclos fijos, ideal para tiempo real. |
+| **Operaciones Pesadas** | 0 Multiplicaciones / 0 Divisiones | Solo requiere Sumas y Complemento a 2. |
+| **Resolución LSB** | 0,00195 | Salida maximizada en formato Q6.9. |
+| **Error Máximo** | 0,00098 (½ LSB) | Redondeo al más cercano garantizado. |
