@@ -61,7 +61,7 @@ Dado que el algoritmo non-restoring requiere múltiples corrimientos lógicos (`
 flowchart TD
     A([Inicio: R=0, Q=0, k=13]) --> B
     
-    B[Bajar 2 bits del radicando:\n T = 4R + par] --> C{¿Resto anterior\n >= 0?}
+    B[Bajar 2 bits del radicando:<br>T = 4R + par] --> C{¿Resto anterior<br>>= 0?}
     
     C -- Sí --> D[R = T - 4Q - 1]
     C -- No --> E[R = T + 4Q + 3]
@@ -69,12 +69,12 @@ flowchart TD
     D --> F
     E --> F
     
-    F[Pegar bit a la raíz:\n Q = 2Q + bit_nuevo] --> G{¿Faltan\n iteraciones?}
+    F[Pegar bit a la raíz:<br>Q = 2Q + bit_nuevo] --> G{¿Faltan<br>iteraciones?}
     
     G -- Sí --> B
-    G -- No --> H[Corrección final:\n Si R < 0, R = R + 2Q + 1]
+    G -- No --> H[Corrección final:<br>Si R < 0, R = R + 2Q + 1]
     
-    H --> I[Redondeo:\n Si R > Q, Q = Q + 1]
+    H --> I[Redondeo:<br>Si R > Q, Q = Q + 1]
     I --> J([Fin: Resultado en Q])
 ```
 
@@ -82,10 +82,10 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A["Controlador Principal\n(Grupo 27)"] -- "R0 (Radicando Q7.8)" --> B
+    A["Controlador Principal<br>(Grupo 27)"] -- "R0 (Radicando Q7.8)" --> B
     
     subgraph Grupo 23
-    B(("SQRT_NR\n(Auto-gestionado)"))
+    B(("SQRT_NR<br>(Auto-gestionado)"))
     end
     
     B -- "R0 (Raíz Q6.9)" --> A
