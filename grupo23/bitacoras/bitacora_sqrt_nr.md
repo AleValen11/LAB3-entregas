@@ -48,3 +48,49 @@
 - *Observaciones y hallazgos:* Como el fork y la estructura de carpetas ya estaban configurados, solo fue necesario sumar los archivos. Subir el código recién después de verificarlo mantiene un historial limpio y permite volver atrás si una actualización posterior rompe el funcionamiento. Con esto, la rutina queda disponible para integrarse al benchmark junto con las de los demás grupos.
 - *Dificultades u obstáculos:* Ninguna significativa en esta sesión.
 - *Plan para la siguiente sesión:* Coordinar con los demás grupos la integración de la rutina al benchmark y preparar el informe y la defensa oral (15 minutos) del Laboratorio 3.
+
+## Sesión 5
+- *Fecha y hora:* 09/11/2026 - 20:00 hs
+- *Objetivo del día:* Coordinar y aplicar actualizaciones al código Assembly para cumplir estrictamente con los requerimientos e interfaz del Grupo 27.
+- *Actividades realizadas:* 
+  - Coordinación de cambios estructurales en el código .asm.
+  - Actualización de la subrutina para que reciba el radicando exclusivamente en R0 (formato Q7.8) y devuelva el resultado en R0 (formato Q6.9).
+  - Implementación de la gestión autónoma de registros internos mediante instrucciones de resguardo (ST y LD), evitando interferencias con el entorno principal. 
+- *Observaciones y hallazgos:* Al independizar los registros, la subrutina se comporta como una caja negra segura y lista para ser llamada desde cualquier controlador de menú sin efectos colaterales.
+- *Dificultades u obstáculos:* Asegurar la compatibilidad exacta de la interfaz de registros con los parámetros esperados por la calculadora general.
+- *Plan para la siguiente sesión:*  Probar la integración real del código actualizado en la plataforma de simulación web lc3.lgrum.xyz.
+
+## Sesión 6
+- *Fecha y hora:* 10/11/2026 - 08:30 hs
+- *Objetivo del día:* Verificar el funcionamiento del nuevo código Assembly en el simulador web y presentarlo ante el jefe de la cátedra.
+- *Actividades realizadas:* 
+  - Verificación y corroboración del correcto funcionamiento de la rutina actualizada en lc3.lgrum.xyz.
+  - Presentación de la actualización ante el Ing. Carballo (ante la ausencia temporal de la tutora Ing. Patricia Feltan), obteniendo su visto bueno y la directiva de subirlo como módulo.
+  - Realización de una puesta en común con un integrante del Grupo 10 sobre el uso y comportamiento de los módulos en la plataforma.
+  - Pruebas iniciales de integración utilizando el archivo main.asm y el menú principal provisto por el Grupo 27.
+- *Observaciones y hallazgos:* El Ing. Carballo validó el progreso y orientó sobre el proceso formal de subida en la plataforma. La interacción con otros grupos facilitó el intercambio de experiencias sobre las herramientas del simulador.
+- *Dificultades u obstáculos:* Ninguna significativa en esta sesión.
+- *Plan para la siguiente sesión:* Configurar correctamente y resolver los requerimientos de sintaxis del enlazador web.
+
+## Sesión 7
+- *Fecha y hora:* 10/11/2026 - 10:30 hs
+- *Objetivo del día:* Ejecutar pruebas funcionales de punta a punta en la consola de la calculadora y completar la publicación oficial del módulo en el servidor del aula.
+- *Actividades realizadas:* 
+  - Pruebas de ejecución interactiva en la pestaña Consola, navegando al menú de raíz cuadrada y seleccionando la opción correspondiente.
+  - Autenticación en la plataforma utilizando las credenciales asignadas al Grupo 23.
+  - Publicación formal del archivo modulo_sqrt_nr.asm en el servidor web mediante el botón "PUBLICAR".
+  - Localización definitiva del módulo publicado dentro del apartado "Otros grupos" de la plataforma, confirmando su disponibilidad global para el proyecto.
+- *Observaciones y hallazgos:* La calculadora procesa correctamente el flujo gracias a la integración del menú y los módulos de entrada. Se confirmó que el módulo del Grupo 23 ya se encuentra visible en el servidor de la cátedra.
+- *Dificultades u obstáculos:* Confusión menor al buscar el módulo publicado en la sección ("Otros grupos").
+- *Plan para la siguiente sesión:* Preparar el informe del Laboratorio 3 y ultimar los detalles del lab3 "b" para continuar con el lab3 "c".
+
+## Sesión 8
+- *Fecha y hora:* 10/11/2026 - 12:00 hs
+- *Objetivo del día:* Optimización fina, análisis de métricas de rendimiento (ciclos de reloj y uso de memoria) y estructuración de la futura defensa oral del Laboratorio 3.
+- *Activities realizadas:* 
+  - Análisis de uso de memoria exacta del módulo (`.ORIG x4000`) y verificación de que no colisione con el segmento del sistema operativo ni con el menú principal.
+  - Medición y validación de los ciclos de instrucción ejecutados ($k=13$ iteraciones exactas con saltos condicionales optimizados).
+  - Estructuración de la presentación de 15 minutos para la defensa oral junto al Grupo 9, destacando el diseño modular como caja negra, la resiliencia ante ruido en registros y la compatibilidad con el formato Q7.8/Q6.9.
+- *Observaciones y hallazgos:* El diseño modular como caja negra permite que la subrutina sea independiente del contexto de llamada, garantizando robustez ante cambios en el menú del sistema. El rendimiento en ciclos es óptimo al evitar multiplicaciones y divisiones por hardware.
+- *Dificultades u obstáculos:* Ninguna significativa en esta sesión.
+- *Plan para la siguiente sesión:* Seguir trabajando en la presentación final y prepararnos para la futura defensa del laboratorio ante la cátedra.
