@@ -4,12 +4,14 @@
 
 ## Integrantes
 <!-- Completar en el primer Pull Request -->
-- Apellido, Nombre (@usuario-github)
-- Apellido, Nombre (@usuario-github)
+- Dominguez, Franco David (@Frankisio15)
+- Ferreira Roque, Gloria Morena (@GloriaaMorenaa)
+- Vera, Julieta Lujan (@verajulieta)
+
 
 ## Archivos
 <!-- Qué archivo hace qué -->
-- `archivo.asm`: descripción
+- `Multiplicaciones sucesivas POW.asm`: Las multiplicaciones sucesivas es un método algorítmico clave para calcular potencias grandes (como $a^b$) de forma supereficiente.
 
 ## Cómo probarlo
-<!-- Pasos para ensamblar y ejecutar, y un ejemplo de entrada y salida -->
+Cada código fue evaluado para depurar sus errores y mejorar diferentes objetivos, que se especifican en el prompt, a través de https://wchargin.com/lc3web/ . 
