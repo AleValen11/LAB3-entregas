@@ -7,7 +7,7 @@
   - Creación de la estructura de carpetas (grupo23/alto_nivel y grupo23/asm).
   - Análisis del código lab3a.cpp. Pruebas de conversión de float a formatos Q3.12 y Q7.8 y manejo de desbordes.
 - *Observaciones y hallazgos:* Observamos que la división requiere agrandar el dividendo (corrimiento de 16 bits a la izquierda) para no perder resolución en la parte fraccionaria.
-- *Dificultades u obstáculos:* Comprender que al multiplicar dos números de 16 bits en C++ debíamos hacer un cast a `int32_t` antes de la operación, ya que de lo contrario el resultado se desbordaba y perdíamos la parte alta.
+- *Dificultades u obstáculos:* Comprender que al multiplicar dos números de 16 bits en C++ debíamos hacer un cast a int32_t a los operandos antes de la multiplicación, ya que de lo contrario el resultado se desbordaba y perdíamos la parte alta.
 - *Plan para la siguiente sesión:* Traducir los conceptos de corrimiento y multiplicación a Assembly de la LC-3.
 
 ## Sesión 2
